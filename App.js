@@ -47,7 +47,6 @@ export default function App() {
                            }}>
                 <Tab.Screen name="Home" component={Journal}/>
                 <Tab.Screen name="Rituels" component={Rituals}/>
-                <Tab.Screen name="Add" component={AddButton}/>
                 <Tab.Screen name="Search" component={Search}/>
                 <Tab.Screen name="Profile" component={Profile}/>
             </Tab.Navigator>
