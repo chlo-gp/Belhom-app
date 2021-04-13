@@ -3,14 +3,28 @@ import {View, Text, TouchableOpacity, Image, Platform, StyleSheet, ScrollView} f
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-//import {AuthContext} from '../navigation/AuthProvider';
+import * as firebase from "firebase";
 
 const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    //const {login, googleLogin, fbLogin} = useContext(AuthContext);
+    const Login = (email, password) => {
+        try {
+            if (password.length <8 ){
+                alert("Votre mot de passe doit être d'au moins 8 caractères");
+                return;
+            }
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(user =>{
+                    navigation.navigate('Home')
+                });
+        } catch (error) {
+            console.log(error);
+            alert(error);
 
+        }
+    }
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Image
@@ -39,7 +53,7 @@ const LoginScreen = ({navigation}) => {
 
             <FormButton
                 buttonTitle="Connexion"
-                onPress={() => login(email, password)}
+                onPress={() => Login(email, password)}
             />
 
             <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
@@ -84,7 +98,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-        paddingTop: 50
+        paddingTop: 50,
+        backgroundColor: '#faf4e2'
     },
     logo: {
         height: 150,
@@ -105,6 +120,6 @@ const styles = StyleSheet.create({
     navButtonText: {
         fontSize: 18,
         fontWeight: '500',
-        color: '#2e64e5',
+        color: '#045C61',
     },
 });

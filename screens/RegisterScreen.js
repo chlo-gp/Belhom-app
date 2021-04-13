@@ -3,14 +3,27 @@ import {View, Text, TouchableOpacity, Platform, StyleSheet} from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-//import {AuthContext} from '../navigation/AuthProvider';
+import * as firebase from "firebase";
 
 const SignupScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
+    //const [confirmPassword, setConfirmPassword] = useState();
 
-   // const {register} = useContext(AuthContext);
+   const SignUp = (email, password) => {
+       try {
+           if (password.length <8 ){
+               alert("Votre mot de passe doit être d'au moins 8 caractères");
+               return;
+           }
+           firebase.auth().createUserWithEmailAndPassword(email, password);
+           navigation.navigate('Home');
+       } catch (error) {
+           console.log(error);
+
+       }
+    }
+
 
     return (
         <View style={styles.container}>
@@ -34,17 +47,10 @@ const SignupScreen = ({navigation}) => {
                 secureTextEntry={true}
             />
 
-            <FormInput
-                labelValue={confirmPassword}
-                onChangeText={(userPassword) => setConfirmPassword(userPassword)}
-                placeholderText="Confirmez le mot de passe"
-                iconType="lock-closed-outline"
-                secureTextEntry={true}
-            />
 
             <FormButton
                 buttonTitle="Créer un compte"
-                onPress={() => register(email, password)}
+                onPress={() => SignUp(email,password)}
             />
 
             <View style={styles.textPrivate}>
@@ -95,7 +101,7 @@ export default SignupScreen;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#f9fafd',
+        backgroundColor: '#faf4e2',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
     navButtonText: {
         fontSize: 18,
         fontWeight: '500',
-        color: '#2e64e5',
+        color: '#045C61',
     },
     textPrivate: {
         flexDirection: 'row',
