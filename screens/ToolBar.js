@@ -6,7 +6,6 @@ import * as React from "react";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-
 const Tab = createBottomTabNavigator();
 
 export default function ToolBar() {
@@ -19,7 +18,7 @@ export default function ToolBar() {
             iconName = focused ? 'home' : 'home-outline';
         } else if (route.name === 'Rituels') {
             iconName = focused ? 'repeat' : 'repeat-outline';
-        } else if (route.name === 'Profil') {
+        } else if (route.name === 'Profil' ||route.name === 'Login' ) {
             iconName = focused ? 'person' : 'person-outline';
         } else if (route.name === 'Recherche') {
             iconName = focused ? 'search' : 'search-outline';

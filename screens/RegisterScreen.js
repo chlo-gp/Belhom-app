@@ -8,6 +8,7 @@ import * as firebase from "firebase";
 const SignupScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [displayName, setDisplayName] = useState();
     //const [confirmPassword, setConfirmPassword] = useState();
 
    const SignUp = (email, password) => {
@@ -16,8 +17,13 @@ const SignupScreen = ({navigation}) => {
                alert("Votre mot de passe doit être d'au moins 8 caractères");
                return;
            }
-           firebase.auth().createUserWithEmailAndPassword(email, password);
-           navigation.navigate('Home');
+           firebase.auth().createUserWithEmailAndPassword(email, password)
+           .then((res) => {
+            res.user.updateProfile({
+              displayName: displayName
+            })
+            navigation.navigate('Home');
+        })      
        } catch (error) {
            console.log(error);
 
@@ -29,6 +35,13 @@ const SignupScreen = ({navigation}) => {
         <View style={styles.container}>
             <Text style={styles.text}>Créer un compte</Text>
 
+            <FormInput
+                labelValue={displayName}
+                onChangeText={(userDisplayName) => setDisplayName(userDisplayName)}
+                placeholderText="Ton prénom"
+                iconType="person-outline"
+                autoCorrect={false}
+            />
             <FormInput
                 labelValue={email}
                 onChangeText={(userEmail) => setEmail(userEmail)}
