@@ -2,17 +2,10 @@ import React from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const SocialButton = ({
-                          buttonTitle,
-                          btnType,
-                          color,
-                          backgroundColor,
-                          ...rest
-                      }) => {
+const SocialButton = ({buttonTitle,btnType,color,backgroundColor}) => {
     return (
         <TouchableOpacity
-            style={[styles.buttonContainer, {backgroundColor: backgroundColor}]}
-            {...rest}>
+            style={[styles.buttonContainer, {backgroundColor: backgroundColor}]}>
             <View style={styles.iconWrapper}>
                 <Ionicons name={btnType} style={styles.icon} size={22} color={color} />
             </View>

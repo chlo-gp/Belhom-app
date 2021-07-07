@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-const FormButton = ({buttonTitle, ...rest}) => {
+const FormButton = ({buttonTitle}) => {
     return (
-        <TouchableOpacity style={styles.buttonContainer} {...rest}>
+        <TouchableOpacity style={styles.buttonContainer} >
             <Text style={styles.buttonText}>{buttonTitle}</Text>
         </TouchableOpacity>
     );

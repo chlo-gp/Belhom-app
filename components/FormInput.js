@@ -2,7 +2,7 @@ import React from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
+const FormInput = ({labelValue, placeholderText, iconType}) => {
     return (
         <View style={styles.inputContainer}>
             <View style={styles.iconStyle}>
@@ -14,7 +14,6 @@ const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
                 numberOfLines={1}
                 placeholder={placeholderText}
                 placeholderTextColor="#666"
-                {...rest}
             />
         </View>
     );
